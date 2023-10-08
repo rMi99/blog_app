@@ -18,9 +18,13 @@ class PostController extends Controller
 
     public function show($id)
     {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
         $comments = $post->comments;
+   
+        
+        
         return view('posts.show', compact('post','comments'));
+        
     }
 
     public function create()
@@ -103,4 +107,5 @@ class PostController extends Controller
         return redirect()->route('posts.index')
             ->with('success', 'Post deleted successfully');
     }
+ 
 }

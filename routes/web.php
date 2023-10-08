@@ -12,7 +12,7 @@ use App\Http\Controllers\HomeController;
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'userPosts'])->name('home');
 Route::get('/', [PostController::class, 'index'])->name('/');
 Route::get('/{post}', [PostController::class, 'show'])->name('post');
 
@@ -34,7 +34,7 @@ Route::post('/posts', [PostController::class,'store'])->name('posts.store');
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::delete('/home', [PostController::class,'destroy'])->name('home.destroy');
+    Route::delete('/home/destroy/{post}', [PostController::class,'destroy'])->name('home.destroy');
 
 
 });

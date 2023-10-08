@@ -15,12 +15,12 @@
     <link rel="stylesheet" href="{{ asset('fonts/flaticon/font/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('css/aos.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script nonce="9cb6e2ff-401f-40d2-9886-2285b63d348b">
+    {{-- <script nonce="9cb6e2ff-401f-40d2-9886-2285b63d348b">
         (function(w, d) {
             // Zaraz script initialization code
             // ...
         })(window, document);
-    </script>
+    </script> --}}
 </head>
 <body>
     <div class="site-wrap">

@@ -41,7 +41,7 @@
                                 <img src="{{ asset('images/person_1.jpg') }}" alt="Image placeholder">
                             </div>
                             <div class="comment-body">
-                                <h3> {{ $comment->content }}</h3>
+                                <h3> User</h3>
                                 <div class="meta"> {{ $comment->created_at }}</div>
                                 <p> {{ $comment->content }}</p>
                                 <p><a href="#" class="reply rounded">Reply</a></p>

@@ -23,8 +23,8 @@
                         <i class="fas fa-edit"></i> Edit
                     </a>
         
-                    {{-- Delete Button (with a confirmation dialog) --}}
-                    <form action="{{ route('home.destroy', ['post' => $post->id]) }}" method="POST" style="display: inline-block;">
+                    {{-- <form action="{{ route('home.destroy', ['post' => $post->id]) }}" method="POST" style="display: inline-block;"> --}}
+                        <form action="" method="POST" style="display: inline-block;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="confirmDelete(this)">
