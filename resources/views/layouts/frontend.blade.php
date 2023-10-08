@@ -38,7 +38,7 @@
                      </form>
                   </div>
                   <div class="col-4 site-logo">
-                     <a href="index-2.html" class="text-black h2 mb-0">Mini Blog</a>
+                     <a href="index-2.html" class="text-black h2 mb-0"><img src="{{url('/images/logo.png')}}" width="143px" alt="" srcset=""></a>
                   </div>
                   <div class="col-8 text-right">
                      <nav class="site-navigation" role="navigation">

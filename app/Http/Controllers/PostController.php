@@ -12,9 +12,9 @@ class PostController extends Controller
 
     public function index()
     {
-        // $posts = Post::latest()->paginate(10);
-        // return view('home');
-
+        
+        $posts = Post::latest()->get();
+        return view('welcome',compact('posts'));
     }
 
     // Method to display a specific blog post
