@@ -59,9 +59,7 @@
         </div>
         <div class="row">
             
-@foreach ($posts as $post)
-
-
+        @foreach ($posts as $post)
 
             <div class="col-lg-4 mb-4">
                 <div class="entry2">
@@ -75,11 +73,12 @@
                             <span>&nbsp;-&nbsp; {{ $post->created_at }}</span>
                         </div>
                         <p>{{ Str::limit($post->content, 80) }}</p>
-                        <p><a href="#">Read More</a></p>
+                        <p><a href="{{ route('posts.show', ['post' => $post->id]) }}">Read More</a></p>
+
                     </div>
                 </div>
             </div>
-            @endforeach
+         @endforeach
         </div>
         <div class="row text-center pt-5 border-top">
             <div class="col-md-12">

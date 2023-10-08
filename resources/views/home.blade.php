@@ -24,12 +24,10 @@
                     </a>
         
                     {{-- Delete Button (with a confirmation dialog) --}}
-                    {{-- <form action="{{ route('posts.destroy', ['post' => $post->id]) }}" method="POST" style="display: inline-block;"> --}}
-                  
-                    <form action="" method="POST" style="display: inline-block;">
+                    <form action="{{ route('home.destroy', ['post' => $post->id]) }}" method="POST" style="display: inline-block;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this post?');">
+                        <button type="submit" class="btn btn-danger" onclick="confirmDelete(this)">
                             <i class="fas fa-trash-alt"></i> Delete
                         </button>
                     </form>
@@ -108,8 +106,26 @@
                
             }
         });
-    </script>
+    
 @endif
 
+<script>
+    function confirmDelete(button) {
+        Swal.fire({
+            title: 'Delete Post',
+            text: 'Are you sure you want to delete this post?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                button.closest('form').submit(); 
+            }
+        });
+    }
+</script>
 
 @endsection

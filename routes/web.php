@@ -3,6 +3,7 @@
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 
 // Route::get('/', function () {
@@ -11,8 +12,11 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('/');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [PostController::class, 'index'])->name('/');
+Route::get('/{post}', [PostController::class, 'show'])->name('post');
+
+// Route::delete('/home/destroy', [ PostController::class,'create'])->name('home.destroy');
 
 
 Route::get('/posts/{post}', [PostController::class,'show'])->name('posts.show');
@@ -27,4 +31,11 @@ Route::get('/posts', [ PostController::class,'index'])->name('posts.index');
 
 Route::post('/posts', [PostController::class,'store'])->name('posts.store');
 
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::delete('/home', [PostController::class,'destroy'])->name('home.destroy');
+
+
+});
 
