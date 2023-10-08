@@ -48,18 +48,26 @@ class PostController extends Controller
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('post_images', 'public');
+        }else{
+        $imagePath = "post_images/img_1.jpeg";
+
         }
 
-        // Create a new post
+        // Create a new posts
         $post = new Post();
         $post->title = $request->input('title');
         $post->content = $request->input('content');
+        $post->author_name = $request->input('author_name');
         $post->image = $imagePath;
-        $post->user_id = Auth::id(); // Assuming you have user authentication
+        $post->user_id = Auth::id(); 
         $post->save();
+        // dd( Auth::id());
 
-        return redirect()->route('posts.index')
-            ->with('success', 'Post created successfully');
+        // return redirect()->route('posts.index')
+        //     ->with('success', 'Post created successfully');
+
+        return redirect()->route('home')
+        ->with('success', 'Post created successfully');
     }
 
     // Method to edit a blog post
@@ -95,7 +103,7 @@ class PostController extends Controller
                 Storage::disk('public')->delete($post->image);
             }
             $imagePath = $request->file('image')->store('post_images', 'public');
-            $post->image = $imagePath;
+            $post->image = 'storage/'.$imagePath;
         }
 
         $post->save();
@@ -104,7 +112,7 @@ class PostController extends Controller
             ->with('success', 'Post updated successfully');
     }
 
-    // Method to delete a blog post
+
     public function destroy(Post $post)
     {
         // Ensure that the user is authorized to delete this post

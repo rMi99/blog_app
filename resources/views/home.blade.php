@@ -7,20 +7,36 @@
     </button>
     <div class="row">
         @foreach ($posts as $post)
-            <div class="col-md-4" >
-                <div class="card" style="height: 500px;">
-                    <img src="{{ $post->image }}" class="card-img-top" style="height: 200px;width: fit-content;" alts="{{ $post->title }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $post->title }}</h5>
-                        <p>{{ $post->created_at->format('F j, Y') }}
-                        </p>
-                        <p class="card-text">{{ Str::limit($post->content, 200) }}</p>
-                        <p class="card-text">Published by {{ $post->author_name }} on </p>
-                        <a href="{{ route('posts.show', ['post' => $post->id]) }}" class="btn btn-primary">Read More</a>
-                        
-                    </div>
+        <div class="col-md-4" style="margin: 5%">
+            <div class="card" style="height: 500px;">
+                <img src="storage/{{ $post->image }}" class="card-img-top" style="height: 375px;width:350px ;" alt="{{ $post->title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $post->title }}</h5>
+                    <p>{{ $post->created_at->format('F j, Y') }}</p>
+                    <p class="card-text">{{ Str::limit($post->content, 150) }}</p>
+                    <p class="card-text">Published by {{ $post->author_name }}</p>
+                    <a href="{{ route('posts.show', ['post' => $post->id]) }}" class="btn btn-primary">Read More</a>
+        
+                    {{-- Edit Button --}}
+                    {{-- {{ route('posts.edit', ['post' => $post->id]) }} --}}
+                    <a href="" class="btn btn-success">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+        
+                    {{-- Delete Button (with a confirmation dialog) --}}
+                    {{-- <form action="{{ route('posts.destroy', ['post' => $post->id]) }}" method="POST" style="display: inline-block;"> --}}
+                  
+                    <form action="" method="POST" style="display: inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this post?');">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </button>
+                    </form>
                 </div>
             </div>
+        </div>
+        
         @endforeach
     </div>
 
@@ -36,9 +52,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <h1>Create a New Post</h1>
+                 
                         {{-- {{ route('posts.store') }} --}}
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                     
                             <div class="mb-3">
@@ -74,6 +90,26 @@
 
 
 </div>
+@if(session('success'))
+    <script>
+        Swal.fire({
+            title: 'Success!',
+            text: '{{ session('success') }}',
+            icon: 'success',
+            timer: 3000, 
+            timerProgressBar: true, 
+            onClose: () => {
+               
+                window.location.href = '{{ route('home') }}';
+            }
+        }).then((result) => {
+           
+            if (result.dismiss === Swal.DismissReason.timer) {
+               
+            }
+        });
+    </script>
+@endif
 
 
 @endsection

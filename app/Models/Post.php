@@ -14,7 +14,7 @@ class Post extends Model
         'author_name',
         'content',
         'image',
-        'user_id',
+        'user_id'
     ];
 
     // Define the relationship between a post and its comments

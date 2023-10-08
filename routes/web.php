@@ -28,4 +28,6 @@ Route::get('/posts', [ PostController::class,'index'])->name('posts.index');
 // Route::get('/posts', [ PostController::class,'index'])->name('home');
 
 
+Route::post('/posts', [PostController::class,'store'])->name('posts.store');
+
 
