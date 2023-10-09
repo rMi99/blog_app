@@ -2,10 +2,12 @@
 
 @section('content')
 
-<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('{{ asset('images/person_1.jpg') }}');">
-    <div class="container">
+
+<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('asset({{$post->image}})');">
+  
+   <div class="container">
         <div class="row same-height justify-content-center">
-            <div class="col-md-12 col-lg-10">
+            <div class="col-md-12 col-lg-10"> 
                 <div class="post-entry text-center">
                     <span class="post-category text-white bg-success mb-3">Nature</span>
                     <h1 class="mb-4"><a href="#">{{ $post->title }}</a></h1>
@@ -53,16 +55,23 @@
                     <div class="comment-form-wrap pt-5">
                         <h3 class="mb-5">Leave a comment</h3>
                         @auth
-                        <form method="post" action="">
-                            {{-- <form method="post" action="{{ route('comments.store', ['post' => $post->id]) }}"> --}}
-                            @csrf
-                            <div class="form-group">
-                                <span class="icon fa fa-search"></span>
-                                <textarea class="form-control" name="content" rows="3" required></textarea>
-    
-                            </div>
-                            <button type="submit" class="btn btn-primary">Add Comment</button>
-                        </form>
+                        {{-- <form method="post" action=""> --}}
+
+                            <form method="POST" action="{{ route('comments.store', ['post' => $post->id]) }}">
+                                @csrf <!-- CSRF Protection -->
+                                
+                                <div class="form-group">
+                                    <label for="comment">Comment:</label>
+                                    <textarea name="comment" id="comment" class="form-control" rows="4" required></textarea>
+                                    <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                    
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary">Submit Comment</button>
+                            </form>
+                            
+
+                            
                         @else
                         <p>Please <a href="{{ route('login') }}">login</a> to leave a comment.</p>
                         @endauth

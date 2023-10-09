@@ -61,8 +61,11 @@
                                 <textarea class="form-control" id="edit_content" name="content" rows="4" required>{{ $post->content }}</textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="edit_image" class="form-label">Image</label>
-                                <input type="file" value="storage/{{ $post->image }}" class="form-control" id="edit_image" name="image">
+                                <label for="edit_image" class="form-label">
+                                    <img src="storage/{{ $post->image }}" alt="" srcset="">
+                                </label>
+
+                                <input type="file" value="" class="form-control" id="edit_image" name="image">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -112,10 +115,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 </div>
 
 @if(session('success'))
@@ -136,23 +135,5 @@
     </script>
 @endif
 
-<script>
-    function confirmDelete(button) {
-        Swal.fire({
-            title: 'Delete Post',
-            text: 'Are you sure you want to delete this post?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Yes, delete it',
-            cancelButtonText: 'Cancel'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                button.closest('form').submit(); 
-            }
-        });
-    }
-</script>
 
 @endsection

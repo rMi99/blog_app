@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,11 +17,11 @@ Route::get('/home', [HomeController::class, 'userPosts'])->name('home');// req a
 Route::get('/', [PostController::class, 'index'])->name('/');
 Route::get('/{post}', [PostController::class, 'show'])->name('post');
 Route::put('/posts/{post}/update', [PostController::class,'update'])->name('posts.update');
-
 Route::delete('/posts/{post}/destroy', [PostController::class,'destroy'])->name('posts.destroy');
 
 
-
+Route::post('/comments/store/{post}', [CommentController::class,'index'])->name('comments.store');
+Route::get('/posts/search', [PostController::class, 'search'])->name('posts.search');
 
 
 // Route::delete('/home/destroy', [ PostController::class,'create'])->name('home.destroy');

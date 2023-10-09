@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Mini Blog</title>
+    <title>rME Blog</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900" rel="stylesheet">
@@ -15,18 +15,11 @@
     <link rel="stylesheet" href="{{ asset('fonts/flaticon/font/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('css/aos.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    {{-- <script nonce="9cb6e2ff-401f-40d2-9886-2285b63d348b">
-        (function(w, d) {
-            // Zaraz script initialization code
-            // ...
-        })(window, document);
-    </script> --}}
+
 </head>
 <body>
     <div class="site-wrap">
-        <!-- Mobile menu and header -->
         <div class="site-mobile-menu">
-            <!-- Mobile menu header -->
             <div class="site-mobile-menu-header">
                 <div class="site-mobile-menu-close mt-3">
                     <span class="icon-close2 js-menu-toggle"></span>
@@ -41,26 +34,41 @@
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <!-- Search form -->
-                    <div class="col-12 search-form-wrap js-search-form">
-                        <form method="get" action="#">
-                            <input type="text" id="s" class="form-control" placeholder="Search...">
-                            <button class="search-btn" type="submit"><span class="icon-search"></span></button>
-                        </form>
-                    </div>
+                 <!-- Search form -->
+<div class="col-12 search-form-wrap js-search-form">
+    <form method="get" action="" class="search-form">
+        {{-- <form method="get" action="{{ route('search') }}" class="search-form"> --}}
+        <input type="text" id="search" name="q" class="form-control" placeholder="Search..." value="{{ request('q') }}">
+        <button class="search-btn" type="submit"><span class="icon-search"></span></button>
+    </form>
+</div>
+
                     <!-- Site logo -->
                     <div class="col-4 site-logo">
                         <a href="index-2.html" class="text-black h2 mb-0"><img src="{{ url('/images/logo.png') }}"
                                 width="143px" style="margin-top: 15px;" alt="" srcset=""></a>
                     </div>
+
+                   
+     
+
+                @if (Route::has('login'))
                     <!-- Navigation menu -->
                     <div class="col-8 text-right">
                         <nav class="site-navigation" role="navigation">
                             <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
                                 <li><a href="/">Home</a></li>
-                                <li><a href="{{ route('register') }}">Register</a></li>
+                                @auth
+                                <li><a href="{{ route('home') }}">Dashboard</a></li>
+                                @else
                                 <li><a href="{{ route('login') }}">Login</a></li>
+                                @if (Route::has('register'))
+                                <li><a href="{{ route('register') }}">Register</a></li>
+                                @endif
+                                @endauth
                                 <li class="d-none d-lg-inline-block"><a href="#" class="js-search-toggle"><span
                                             class="icon-search"></span></a></li>
+                                            @endif
                             </ul>
                         </nav>
                         <a href="#"

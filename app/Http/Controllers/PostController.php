@@ -86,7 +86,7 @@ class PostController extends Controller
                 Storage::disk('public')->delete($post->image);
             }
             $imagePath = $request->file('image')->store('post_images', 'public');
-            $post->image = 'storage/'.$imagePath;
+            $post->image = $imagePath;
         }
 
         $post->save();
