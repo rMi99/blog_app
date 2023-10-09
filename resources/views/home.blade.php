@@ -26,7 +26,7 @@
                     <form action="{{ route('posts.destroy', ['post' => $post->id]) }}" method="POST" style="display: inline-block;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="confirmDelete(this)">
+                        <button type="submit" class="btn btn-danger" >
                             <i class="fas fa-trash-alt"></i> Delete
                         </button>
                     </form>
@@ -37,8 +37,7 @@
         <div class="modal fade" id="editModall{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    {{-- <form action="" method="POST" enctype="multipart/form-data"> --}}
-                        
+
                         <form action="{{ route('posts.update', ['post' => $post->id]) }}" method="POST" enctype="multipart/form-data">
 
                         @csrf

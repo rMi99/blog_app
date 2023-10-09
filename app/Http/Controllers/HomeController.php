@@ -26,8 +26,10 @@ class HomeController extends Controller
     public function index()
     {
                 $posts = Post::latest()->get();
+                // $post->increment('views');
         return view('home',compact('posts'));
     }
+    
 
     public function userPosts(){
         $posts = Post::where('user_id', Auth::user()->id)

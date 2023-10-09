@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('asset({{$post->image}})');">
+<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('{{url('/')}}/storage/{{{ $post->image }}}');">
   
    <div class="container">
         <div class="row same-height justify-content-center">
@@ -43,10 +43,10 @@
                                 <img src="{{ asset('images/person_1.jpg') }}" alt="Image placeholder">
                             </div>
                             <div class="comment-body">
-                                <h3> User</h3>
+                                <h3> {{$comment->user->name}}</h3>
                                 <div class="meta"> {{ $comment->created_at }}</div>
                                 <p> {{ $comment->content }}</p>
-                                <p><a href="#" class="reply rounded">Reply</a></p>
+                                <p><a href="#" class="reply rounded">Delete</a></p>
                             </div>
                         </li>
                         @endforeach

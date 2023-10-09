@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
+    /**s
      * Run the migrations.
      */
     public function up(): void
@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('roles')->nullable();
+            $table->string('password')->nullable();
+            $table->string('google_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

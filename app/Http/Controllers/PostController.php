@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
@@ -19,10 +20,12 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
-        $comments = $post->comments;
+       
    
-        
-        
+        $comments = Comment::where('post_id', $post->id)
+        ->with('user')
+        ->get();
+    // return $comments;
         return view('posts.show', compact('post','comments'));
         
     }
@@ -33,8 +36,7 @@ class PostController extends Controller
     }
 
     public function store(Request $request)
-    {
-        
+    { 
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
@@ -56,7 +58,7 @@ class PostController extends Controller
         $post->image = $imagePath;
         $post->user_id = Auth::id(); 
         $post->save();
-        // dd( Auth::id());
+      
         return redirect()->route('home')
         ->with('success', 'Post created successfully');
     }
@@ -69,8 +71,7 @@ class PostController extends Controller
 
     public function update(Request $request, Post $post)
     {
-        // $this->authorize('update', $postId);
-
+   
         $request->validate([
             'title' => ['required', 'max:255', Rule::unique('posts')->ignore($post->id)],
             'content' => 'required',
@@ -97,8 +98,6 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        // $this->authorize('delete', $post);
-
         if ($post->image) {
             Storage::disk('public')->delete($post->image);
         }
