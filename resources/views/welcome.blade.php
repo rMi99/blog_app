@@ -53,13 +53,38 @@
         </div>
         <div class="row text-center pt-5 border-top">
             <div class="col-md-12">
+            
                 <div class="custom-pagination">
-                    <span>1</span>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <span>...</span>
-                    <a href="#">15</a>
+                    <div class="custom-pagination">
+                        @if ($posts->onFirstPage())
+                            <span>1</span>
+                        @else
+                            <a href="{{ $posts->previousPageUrl() }}">1</a>
+                        @endif
+                    
+                        @if ($posts->currentPage() > 3)
+                            <span>...</span>
+                        @endif
+                    
+                        @foreach ($posts->getUrlRange(2, $posts->lastPage()) as $page => $url)
+                            @if ($page == $posts->currentPage())
+                                <span>{{ $page }}</span>
+                            @else
+                                <a href="{{ $url }}">{{ $page }}</a>
+                            @endif
+                        @endforeach
+                    
+                        @if ($posts->currentPage() < $posts->lastPage() - 2)
+                            <span>...</span>
+                        @endif
+                    
+                        @if ($posts->currentPage() === $posts->lastPage())
+                            <span>{{ $posts->lastPage() }}</span>
+                        @else
+                            <a href="{{ $posts->nextPageUrl() }}">{{ $posts->lastPage() }}</a>
+                        @endif
+                    </div>
+                    
                 </div>
             </div>
         </div>
