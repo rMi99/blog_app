@@ -69,7 +69,7 @@ class PostController extends Controller
 
     public function update(Request $request, Post $post)
     {
-        $this->authorize('update', $post);
+        // $this->authorize('update', $postId);
 
         $request->validate([
             'title' => ['required', 'max:255', Rule::unique('posts')->ignore($post->id)],
@@ -79,6 +79,7 @@ class PostController extends Controller
 
         $post->title = $request->input('title');
         $post->content = $request->input('content');
+        $post->author_name = $request->input('author_name');
 
         if ($request->hasFile('image')) {
             if ($post->image) {
@@ -90,21 +91,20 @@ class PostController extends Controller
 
         $post->save();
 
-        return redirect()->route('posts.index')
+        return redirect()->route('home')
             ->with('success', 'Post updated successfully');
     }
 
-
     public function destroy(Post $post)
     {
-        $this->authorize('delete', $post);
+        // $this->authorize('delete', $post);
 
         if ($post->image) {
             Storage::disk('public')->delete($post->image);
         }
         $post->delete();
 
-        return redirect()->route('posts.index')
+        return redirect()->route('home')
             ->with('success', 'Post deleted successfully');
     }
  

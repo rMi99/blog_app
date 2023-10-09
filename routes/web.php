@@ -12,9 +12,16 @@ use App\Http\Controllers\HomeController;
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'userPosts'])->name('home');
+Route::get('/home', [HomeController::class, 'userPosts'])->name('home');// req auth
 Route::get('/', [PostController::class, 'index'])->name('/');
 Route::get('/{post}', [PostController::class, 'show'])->name('post');
+Route::put('/posts/{post}/update', [PostController::class,'update'])->name('posts.update');
+
+Route::delete('/posts/{post}/destroy', [PostController::class,'destroy'])->name('posts.destroy');
+
+
+
+
 
 // Route::delete('/home/destroy', [ PostController::class,'create'])->name('home.destroy');
 
@@ -34,8 +41,7 @@ Route::post('/posts', [PostController::class,'store'])->name('posts.store');
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::delete('/home/destroy/{post}', [PostController::class,'destroy'])->name('home.destroy');
-
+  
 
 });
 

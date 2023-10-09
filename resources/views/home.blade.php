@@ -16,15 +16,14 @@
                     <p class="card-text">{{ Str::limit($post->content, 150) }}</p>
                     <p class="card-text">Published by {{ $post->author_name }}</p>
                     <a href="{{ route('posts.show', ['post' => $post->id]) }}" class="btn btn-primary">Read More</a>
-        
-                    {{-- Edit Button --}}
-                    {{-- {{ route('posts.edit', ['post' => $post->id]) }} --}}
-                    <a href="" class="btn btn-success">
+
+                    <!-- Edit Button -->
+                    <button type="button" class="btn btn-success end-0" data-bs-toggle="modal" data-bs-target="#editModall{{ $post->id }}">
                         <i class="fas fa-edit"></i> Edit
-                    </a>
-        
-                    {{-- <form action="{{ route('home.destroy', ['post' => $post->id]) }}" method="POST" style="display: inline-block;"> --}}
-                        <form action="" method="POST" style="display: inline-block;">
+                    </button>
+
+                    <!-- Delete Button -->
+                    <form action="{{ route('posts.destroy', ['post' => $post->id]) }}" method="POST" style="display: inline-block;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="confirmDelete(this)">
@@ -34,60 +33,91 @@
                 </div>
             </div>
         </div>
-        
+        <!-- Edit Modal -->
+        <div class="modal fade" id="editModall{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    {{-- <form action="" method="POST" enctype="multipart/form-data"> --}}
+                        
+                        <form action="{{ route('posts.update', ['post' => $post->id]) }}" method="POST" enctype="multipart/form-data">
+
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel">Edit Post</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="edit_title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="edit_title" name="title" value="{{ $post->title }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="edit_author_name" class="form-label">Author Name</label>
+                                <input type="text" class="form-control" id="edit_author_name" name="author_name" value="{{ $post->author_name }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="edit_content" class="form-label">Content</label>
+                                <textarea class="form-control" id="edit_content" name="content" rows="4" required>{{ $post->content }}</textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="edit_image" class="form-label">Image</label>
+                                <input type="file" value="storage/{{ $post->image }}" class="form-control" id="edit_image" name="image">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         @endforeach
     </div>
 
-
-
-    
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
+    <!-- Modal for Adding New Post -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Add New Post</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                 
-                        {{-- {{ route('posts.store') }} --}}
-                        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                    
-                            <div class="mb-3">
-                                <label for="title" class="form-label">Title</label>
-                                <input type="text" class="form-control" id="title" name="title" required>
-                            </div>
-                    
-                            <div class="mb-3">
-                                <label for="author_name" class="form-label">Author Name</label>
-                                <input type="text" class="form-control" id="author_name" name="author_name" required>
-                            </div>
-                    
-                            <div class="mb-3">
-                                <label for="content" class="form-label">Content</label>
-                                <textarea class="form-control" id="content" name="content" rows="4" required></textarea>
-                            </div>
-                    
-                            <div class="mb-3">
-                                <label for="image" class="form-label">Image</label>
-                                <input type="file" class="form-control" id="image" name="image">
-                            </div>
-                    
-                            <button type="submit" class="btn btn-primary">Create Post</button>
-                        </form>
+                        <div class="mb-3">
+                            <label for="add_title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="add_title" name="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="add_author_name" class="form-label">Author Name</label>
+                            <input type="text" class="form-control" id="add_author_name" name="author_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="add_content" class="form-label">Content</label>
+                            <textarea class="form-control" id="add_content" name="content" rows="4" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="add_image" class="form-label">Image</label>
+                            <input type="file" class="form-control" id="add_image" name="image">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Create Post</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
+    </div>
+
+
 
 
 </div>
+
 @if(session('success'))
     <script>
         Swal.fire({
@@ -97,16 +127,13 @@
             timer: 3000, 
             timerProgressBar: true, 
             onClose: () => {
-               
                 window.location.href = '{{ route('home') }}';
             }
         }).then((result) => {
-           
             if (result.dismiss === Swal.DismissReason.timer) {
-               
             }
         });
-    
+    </script>
 @endif
 
 <script>
