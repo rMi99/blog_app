@@ -36,32 +36,37 @@ class PostController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required',
-            'image' => 'nullable|image|max:1024',
-        ]);
+       {
+            $request->validate([
+                'title' => 'required|max:255',
+                'content' => 'required',
+                'image' => 'nullable|image|max:1024',
+            ]);
 
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('post_images', 'public');
-        }else{
-        $imagePath = "post_images/img_1.jpeg";
+            $imagePath = null;
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('post_images', 'public');
+            } else {
+                $imagePath = "post_images/img_1.jpeg";
+            }
 
+            $post = new Post();
+            $post->title = $request->title;
+            $post->content = $request->content;
+            $post->author_name = $request->author_name;
+            $post->image = $imagePath;
+            $post->user_id = Auth::id();
+            $post->save();
+
+
+            if ($post) {
+                return redirect()->route('home')
+                    ->with('success', 'Post created successfully');
+            } else {
+                return redirect()->back()
+                    ->with('error', 'Error creating the post');
+            }
         }
-
-        $post = new Post();
-        $post->title = $request->title;
-        $post->content = $request->content;
-        $post->author_name = $request->author_name;
-        $post->image = $imagePath;
-        $post->user_id = Auth::id();
-        $post->save();
-
-        return redirect()->route('home')
-        ->with('success', 'Post created successfully');
-    }
 
     public function edit(Post $post)
     {
@@ -89,7 +94,6 @@ class PostController extends Controller
             $imagePath = $request->file('image')->store('post_images', 'public');
             $post->image = $imagePath;
         }
-
         $post->save();
 
         return redirect()->route('home')

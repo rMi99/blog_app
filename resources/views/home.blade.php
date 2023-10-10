@@ -17,12 +17,12 @@
                     <p class="card-text">Published by {{ $post->author_name }}</p>
                     <a href="{{ route('posts.show', ['post' => $post->id]) }}" class="btn btn-primary">Read More</a>
 
-                    <!-- Edit Button -->
+                    <!-- Edit btn -->
                     <button type="button" class="btn btn-success end-0" data-bs-toggle="modal" data-bs-target="#editModall{{ $post->id }}">
                         <i class="fas fa-edit"></i> Edit
                     </button>
 
-                    <!-- Delete Button -->
+                    <!-- Del btn -->
                     <form action="{{ route('posts.destroy', ['post' => $post->id]) }}" method="POST" style="display: inline-block;">
                         @csrf
                         @method('DELETE')
@@ -78,7 +78,6 @@
         @endforeach
     </div>
 
-    <!-- Modal for Adding New Post -->
     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -105,11 +104,10 @@
                             <label for="add_image" class="form-label">Image</label>
                             <input type="file" class="form-control" id="add_image" name="image">
                         </div>
-                        {{-- <div class="mb-3">
+                        <div class="mb-3">
                             <label for="tags" class="form-label">Tags (Separate with Commas)</label>
                             <input type="text" class="form-control" id="tags" name="tags">
-                        </div> --}}
-
+                        </div>
 
                     </div>
                     <div class="modal-footer">
@@ -139,6 +137,27 @@
         });
     </script>
 @endif
+
+@if($errors->any())
+    <script>
+
+        Swal.fire({
+            title: 'errors!',
+            text: '{{ $errors->first()}}',
+            icon: 'error',
+            timer: 3000,
+            timerProgressBar: true,
+            onClose: () => {
+                window.location.href = '{{ route('home') }}';
+            }
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+            }
+        });
+
+    </script>
+@endif
+
 
 
 @endsection
