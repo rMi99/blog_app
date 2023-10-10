@@ -9,7 +9,7 @@
         @foreach ($posts as $post)
         <div class="col-md-4" style="margin: 5%">
             <div class="card" style="height: 500px;">
-                <img src="storage/{{ $post->image }}" class="card-img-top" style="height: 375px;width:350px ;" alt="{{ $post->title }}">
+                <img src="storage/{{ $post->image }}" class="card-img-top" style="height: 250px;" alt="{{ $post->title }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $post->title }}</h5>
                     <p>{{ $post->created_at->format('F j, Y') }}</p>
@@ -105,6 +105,12 @@
                             <label for="add_image" class="form-label">Image</label>
                             <input type="file" class="form-control" id="add_image" name="image">
                         </div>
+                        {{-- <div class="mb-3">
+                            <label for="tags" class="form-label">Tags (Separate with Commas)</label>
+                            <input type="text" class="form-control" id="tags" name="tags">
+                        </div> --}}
+                        
+            
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

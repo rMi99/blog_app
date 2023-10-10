@@ -13,6 +13,7 @@ class CreatePostsTable extends Migration
             $table->string('author_name');
             $table->text('content');
             $table->string('image')->nullable();
+            $table->integer('views')->default(0);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

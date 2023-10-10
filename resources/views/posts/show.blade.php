@@ -15,6 +15,7 @@
                         <figure class="author-figure mb-0 mr-3 d-inline-block"><img src="{{ asset('images/person_1.jpg') }}" alt="Image" class="img-fluid"></figure>
                         <span class="d-inline-block mt-1">By  {{ $post->author_name }}</span>
                         <span>&nbsp;-&nbsp; {{ $post->created_at }}</span>
+                        <p>Views: {{ $post->views }}</p>
                     </div>
                 </div>
             </div>

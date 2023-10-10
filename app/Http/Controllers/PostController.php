@@ -14,14 +14,14 @@ class PostController extends Controller
     public function index()
     {    
         $posts = Post::latest()->paginate(10); 
-        return view('welcome',compact('posts'));
+        return view('welcome', compact('posts'));
     }
 
     public function show($id)
     {
         $post = Post::findOrFail($id);
        
-   
+        $post->increment('views');
         $comments = Comment::where('post_id', $post->id)
         ->with('user')
         ->get();

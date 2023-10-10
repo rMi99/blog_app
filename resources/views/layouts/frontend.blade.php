@@ -45,7 +45,7 @@
 
                     <!-- Site logo -->
                     <div class="col-4 site-logo">
-                        <a href="index-2.html" class="text-black h2 mb-0"><img src="{{ url('/images/logo.png') }}"
+                        <a href="/" class="text-black h2 mb-0"><img src="{{ url('/images/logo.png') }}"
                                 width="143px" style="margin-top: 15px;" alt="" srcset=""></a>
                     </div>
 
@@ -88,9 +88,7 @@
                 <div class="row mb-5">
                     <div class="col-md-4">
                         <h3 class="footer-heading mb-4">About Us</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat reprehenderit magnam
-                            deleniti quasi saepe, consequatur atque sequi delectus dolore veritatis obcaecati quae,
-                            repellat eveniet omnis, voluptatem in. Soluta, eligendi, architecto.</p>
+                        <p>If Ramisha Gimhana would like to use this text for their blog, they can replace it with their own content. Lorem ipsum is often used as a placeholder during the design and development phase of a website or publication. If Ramisha Gimhana needs assistance with specific content or topics for their blog, please provide more details or questions, and I'd be happy to help.</p>
                     </div>
                     <div class="col-md-3 ml-auto">
                         <!-- Footer links -->

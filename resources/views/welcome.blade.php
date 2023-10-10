@@ -10,7 +10,7 @@
          <div class="row same-height justify-content-center">
              <div class="col-md-12 col-lg-10"> 
                  <div class="post-entry text-center">
-                     <img src="{{ asset('images/logo.png') }}" alt="" srcset="">
+                     <img src="{{ asset('images/logo.png') }}"  alt="" srcset="">
                      <div class="post-meta align-items-center text-center">
                          <figure class="author-figure mb-0 mr-3 d-inline-block"><p>New thoughts from us </p></figure>
                          <span class="d-inline-block mt-1">By Ramisha Gimhana</span>
@@ -35,14 +35,15 @@
 
             <div class="col-lg-4 mb-4">
                 <div class="entry2">
-                    <a href="{{ route('posts.show', ['post' => $post->id]) }}"><img src="storage/{{{ $post->image }}}" alt="Image" class="img-fluid rounded"></a>
+                    <a href="{{ route('posts.show', ['post' => $post->id]) }}"><img src="storage/{{{ $post->image }}}" alt="Image" height="250px" class="img-fluid rounded"></a>
                     <div class="excerpt">
                         <span class="post-category text-white bg-secondary mb-3">Politics</span>
                         <h2><a href="{{ route('posts.show', ['post' => $post->id]) }}">{{ $post->title }}.</a></h2>
                         <div class="post-meta align-items-center text-left clearfix">
-                            <figure class="author-figure mb-0 mr-3 float-left"><img src="{{ asset('images/person_1.jpg') }}" alt="Image" class="img-fluid"></figure>
+                            <figure class="author-figure mb-0 mr-3 float-left"><img src="{{ asset('images/person_1.jpg') }}"  alt="Image" class="img-fluid"></figure>
                             <span class="d-inline-block mt-1">Published by  <a href="#">{{ $post->author_name }}</a></span>
                             <span>&nbsp;-&nbsp; {{ $post->created_at }}</span>
+                            <p>Views: {{ $post->views }}</p>
                         </div>
                         <p>{{ Str::limit($post->content, 80) }}</p>
                         <p><a href="{{ route('posts.show', ['post' => $post->id]) }}">Read More...</a></p>
