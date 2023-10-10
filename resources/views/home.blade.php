@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $post->title }}</h5>
                     <p>{{ $post->created_at->format('F j, Y') }}</p>
-                    <p class="card-text">{{ Str::limit($post->content, 150) }}</p>
+                    <p class="card-text">{{ Str::limit($post->content, 70) }}</p>
                     <p class="card-text">Published by {{ $post->author_name }}</p>
                     <a href="{{ route('posts.show', ['post' => $post->id]) }}" class="btn btn-primary">Read More</a>
 
@@ -61,7 +61,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="edit_image" class="form-label">
-                                    <img src="storage/{{ $post->image }}" alt="" srcset="">
+                                    <img src="storage/{{ $post->image }}" width="100px" alt="" srcset="">
                                 </label>
 
                                 <input type="file" value="" class="form-control" id="edit_image" name="image">
@@ -109,8 +109,8 @@
                             <label for="tags" class="form-label">Tags (Separate with Commas)</label>
                             <input type="text" class="form-control" id="tags" name="tags">
                         </div> --}}
-                        
-            
+
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -128,8 +128,8 @@
             title: 'Success!',
             text: '{{ session('success') }}',
             icon: 'success',
-            timer: 3000, 
-            timerProgressBar: true, 
+            timer: 3000,
+            timerProgressBar: true,
             onClose: () => {
                 window.location.href = '{{ route('home') }}';
             }

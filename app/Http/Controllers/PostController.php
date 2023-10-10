@@ -12,22 +12,22 @@ class PostController extends Controller
 {
 
     public function index()
-    {    
-        $posts = Post::latest()->paginate(10); 
+    {
+        $posts = Post::latest()->paginate(10);
         return view('welcome', compact('posts'));
     }
 
     public function show($id)
     {
         $post = Post::findOrFail($id);
-       
+
         $post->increment('views');
         $comments = Comment::where('post_id', $post->id)
         ->with('user')
         ->get();
     // return $comments;
         return view('posts.show', compact('post','comments'));
-        
+
     }
 
     public function create()
@@ -36,11 +36,11 @@ class PostController extends Controller
     }
 
     public function store(Request $request)
-    { 
+    {
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
-            'image' => 'nullable|image|max:1024', 
+            'image' => 'nullable|image|max:1024',
         ]);
 
         $imagePath = null;
@@ -52,13 +52,13 @@ class PostController extends Controller
         }
 
         $post = new Post();
-        $post->title = $request->input('title');
-        $post->content = $request->input('content');
-        $post->author_name = $request->input('author_name');
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->author_name = $request->author_name;
         $post->image = $imagePath;
-        $post->user_id = Auth::id(); 
+        $post->user_id = Auth::id();
         $post->save();
-      
+
         return redirect()->route('home')
         ->with('success', 'Post created successfully');
     }
@@ -71,11 +71,11 @@ class PostController extends Controller
 
     public function update(Request $request, Post $post)
     {
-   
+
         $request->validate([
             'title' => ['required', 'max:255', Rule::unique('posts')->ignore($post->id)],
             'content' => 'required',
-            'image' => 'nullable|image|max:1024', 
+            'image' => 'nullable|image|max:1024',
         ]);
 
         $post->title = $request->input('title');
@@ -106,5 +106,5 @@ class PostController extends Controller
         return redirect()->route('home')
             ->with('success', 'Post deleted successfully');
     }
- 
+
 }
