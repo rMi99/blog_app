@@ -13,13 +13,13 @@ use function Laravel\Prompts\error;
 
 class GoogleAuthController extends Controller
 {
-   
+
 
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
     }
-    
+
     public function handleGoogleCallback()
     {
         try {
@@ -42,7 +42,7 @@ class GoogleAuthController extends Controller
                 Auth::login(($user));
                 return redirect()->intended('home');
 
-                
+
             }
 
 
@@ -52,5 +52,5 @@ class GoogleAuthController extends Controller
 
     }
 
-    
+
 }

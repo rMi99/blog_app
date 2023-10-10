@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -40,8 +41,8 @@ Route::get('/{post}', [PostController::class, 'show'])->name('post');
 Route::get('/', [PostController::class, 'index'])->name('/');
 
 
-Route::get('auth/google', [ PostController::class,'redirectToGoogle'])->name('google-auth');
-Route::get('auth/google/call-back', [ PostController::class,'handleGoogleCallback']);
+Route::get('auth/google', [ GoogleAuthController::class,'redirectToGoogle'])->name('google-auth');
+Route::get('auth/google/callback', [ GoogleAuthController::class,'handleGoogleCallback']);
 
 
 
@@ -49,7 +50,7 @@ Route::get('auth/google/call-back', [ PostController::class,'handleGoogleCallbac
 
 Route::group(['middleware' => 'auth'], function () {
 
-  
+
 
 });
 
