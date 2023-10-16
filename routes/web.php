@@ -41,7 +41,7 @@ Route::get('/{post}', [PostController::class, 'show'])->name('post');
 Route::get('/', [PostController::class, 'index'])->name('/');
 
 
-Route::get('auth/google', [ GoogleAuthController::class,'redirectToGoogle'])->name('google-auth');
+Route::get('auth/google', [ GoogleAuthController::class,'redirectToGoogle'])->name('auth-google');
 Route::get('auth/google/callback', [ GoogleAuthController::class,'handleGoogleCallback']);
 
 
@@ -53,4 +53,3 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 });
-
