@@ -40,3 +40,4 @@ class GoogleAuthController extends Controller
         }
     }
 }
+// fc
