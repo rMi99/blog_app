@@ -34,7 +34,7 @@ background: #eee;
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
 
-<body>
+<body >
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -94,7 +94,7 @@ background: #eee;
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4" style="background-color: rgb(227, 230, 240)">
             @yield('content')
         </main>
     </div>

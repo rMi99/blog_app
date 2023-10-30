@@ -85,7 +85,7 @@ class PostController extends Controller
 
         $post->title = $request->input('title');
         $post->content = $request->input('content');
-        $post->author_name = $request->input('author_name');
+        $post->author_name = Auth::user()->name;
 
         if ($request->hasFile('image')) {
             if ($post->image) {
@@ -93,6 +93,7 @@ class PostController extends Controller
             }
             $imagePath = $request->file('image')->store('post_images', 'public');
             $post->image = $imagePath;
+
         }
         $post->save();
 

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="row justify-content-end">
+<div class="row justify-content-end" style="background-color: rgb(227, 230, 240)">
     <div class="col-4">
       <div class="text-end" >
         <button type="button" style="margin-right: 40px;"  class="btn btn-primary end-0" data-bs-toggle="modal" data-bs-target="#myModal">
@@ -22,7 +22,7 @@
         <div class="col-md-12 text-center">
             <img src="{{ asset('images/notfound.jpeg') }}" alt="No posts found" style="height: 350px; width: auto;">
             <h4>No posts found</h4>
-        
+
         </div>
          @else
 
