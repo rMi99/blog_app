@@ -46,14 +46,14 @@
                     <!-- Site logo -->
                     <div class="col-4 site-logo">
                         <a href="/" class="text-black h2 mb-0"><img src="{{ url('/images/logo.png') }}"
-                                width="143px" style="margin-top: 15px;" alt="" srcset=""></a>
+                                width="143px" style="margin-top: 15px;margin-left: 15px;" alt="" srcset=""></a>
                     </div>
 
                    
      
 
                 @if (Route::has('login'))
-                    <!-- Navigation menu -->
+                   
                     <div class="col-8 text-right">
                         <nav class="site-navigation" role="navigation">
                             <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">

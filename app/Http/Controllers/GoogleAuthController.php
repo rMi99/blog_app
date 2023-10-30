@@ -28,6 +28,8 @@ class GoogleAuthController extends Controller
                 $newUser = User::updateOrCreate(['email' => $user->email], [
                     'name' => $user->name,
                     'google_id' => $user->id,
+                    // 'avatar' => $avatar,
+                    
                     // 'password' => encrypt('123456dummy')
                 ]);
                 Auth::login($newUser);

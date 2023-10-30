@@ -1,11 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div class="row justify-content-end">
+    <div class="col-4">
+      <div class="text-end" >
+        <button type="button" style="margin-right: 40px;"  class="btn btn-primary end-0" data-bs-toggle="modal" data-bs-target="#myModal">
+            <i class="fas fa-plus"></i> Add Post
+        </button>
+      </div>
+    </div>
+  </div>
+
+
 <div class="container">
-    <button type="button" class="btn btn-primary end-0" data-bs-toggle="modal" data-bs-target="#myModal">
-        <i class="fas fa-plus"></i> Add Post
-    </button>
+
     <div class="row">
+
+        @if ($posts->isEmpty())
+
+        <div class="col-md-12 text-center">
+            <img src="{{ asset('images/notfound.jpeg') }}" alt="No posts found" style="height: 350px; width: auto;">
+            <h4>No posts found</h4>
+        
+        </div>
+         @else
+
+
         @foreach ($posts as $post)
         <div class="col-md-4" style="margin: 5%">
             <div class="card" style="height: 500px;">
@@ -33,6 +54,9 @@
                 </div>
             </div>
         </div>
+
+
+
         <!-- Edit Modal -->
         <div class="modal fade" id="editModall{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -51,10 +75,10 @@
                                 <label for="edit_title" class="form-label">Title</label>
                                 <input type="text" class="form-control" id="edit_title" name="title" value="{{ $post->title }}" required>
                             </div>
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="edit_author_name" class="form-label">Author Name</label>
                                 <input type="text" class="form-control" id="edit_author_name" name="author_name" value="{{ $post->author_name }}" required>
-                            </div>
+                            </div> --}}
                             <div class="mb-3">
                                 <label for="edit_content" class="form-label">Content</label>
                                 <textarea class="form-control" id="edit_content" name="content" rows="4" required>{{ $post->content }}</textarea>
@@ -76,6 +100,9 @@
             </div>
         </div>
         @endforeach
+        @endif
+
+
     </div>
 
     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -92,10 +119,10 @@
                             <label for="add_title" class="form-label">Title</label>
                             <input type="text" class="form-control" id="add_title" name="title" required>
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="add_author_name" class="form-label">Author Name</label>
                             <input type="text" class="form-control" id="add_author_name" name="author_name" required>
-                        </div>
+                        </div> --}}
                         <div class="mb-3">
                             <label for="add_content" class="form-label">Content</label>
                             <textarea class="form-control" id="add_content" name="content" rows="4" required></textarea>
