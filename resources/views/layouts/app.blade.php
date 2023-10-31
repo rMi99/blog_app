@@ -54,9 +54,9 @@ background: #eee;
 
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
+
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
+
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -94,7 +94,7 @@ background: #eee;
             </div>
         </nav>
 
-        <main class="py-4" style="background-color: rgb(227, 230, 240)">
+        <main class="py-4" style="background-color: rgb(227, 230, 240);height:100vH;">
             @yield('content')
         </main>
     </div>

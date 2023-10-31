@@ -4,17 +4,18 @@
 
 
 <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('{{url('/')}}/storage/{{{ $post->image }}}');">
-  
+
    <div class="container">
         <div class="row same-height justify-content-center">
-            <div class="col-md-12 col-lg-10"> 
+            <div class="col-md-12 col-lg-10">
                 <div class="post-entry text-center">
                     {{-- <span class="post-category text-white bg-success mb-3">Nature</span> --}}
                     <h1 class="mb-4"><a href="#">{{ $post->title }}</a></h1>
                     <div class="post-meta align-items-center text-center">
                         <figure class="author-figure mb-0 mr-3 d-inline-block"><img src="{{ asset('images/person_1.jpg') }}" alt="Image" class="img-fluid"></figure>
                         <span class="d-inline-block mt-1">By  {{ $post->author_name }}</span>
-                        <span>&nbsp;-&nbsp; {{ $post->created_at }}</span>
+                        <span>&nbsp;-&nbsp; {{ $post->created_at->format('M d, Y h:i A') }}</span>
+
                         <p>Views: {{ $post->views }}</p>
                     </div>
                 </div>
@@ -38,7 +39,7 @@
 
 
                         @foreach ($comments as $comment)
-          
+
                         <li class="comment">
                             <div class="vcard">
                                 <img src="{{ asset('images/person_1.jpg') }}" alt="Image placeholder">
@@ -60,23 +61,23 @@
 
                             <form method="POST" action="{{ route('comments.store', ['post' => $post->id]) }}">
                                 @csrf <!-- CSRF Protection -->
-                                
+
                                 <div class="form-group">
                                     <label for="comment">Comment:</label>
                                     <textarea name="comment" id="comment" class="form-control" rows="4" required></textarea>
                                     <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                    
+
                                 </div>
-                                
+
                                 <button type="submit" class="btn btn-primary">Submit Comment</button>
                             </form>
-                            
 
-                            
+
+
                         @else
                         <p>Please <a href="{{ route('login') }}">login</a> to leave a comment.</p>
                         @endauth
-                        
+
                     </div>
                 </div>
             </div>
