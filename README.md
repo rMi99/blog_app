@@ -44,15 +44,15 @@ CACHE_DRIVER=file
 QUEUE_CONNECTION=sync
 SESSION_DRIVER=file
 SESSION_LIFETIME=120
+```
 
+```compmoser install ```
 
-```compmoser install
+```php artisan key:generate ```
+  
+``` php artisan migrate ```
 
-```php artisan key:generate
+``` php artisan storage:link ```
 
-``` php artisan migrate
-
-``` php artisan storage:link
-
-``` php artisan serve
+``` php artisan serve ```
 
