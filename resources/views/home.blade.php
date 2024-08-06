@@ -75,10 +75,10 @@
                                 <label for="edit_title" class="form-label">Title</label>
                                 <input type="text" class="form-control" id="edit_title" name="title" value="{{ $post->title }}" required>
                             </div>
-                            {{-- <div class="mb-3">
+                            <div class="mb-3">
                                 <label for="edit_author_name" class="form-label">Author Name</label>
                                 <input type="text" class="form-control" id="edit_author_name" name="author_name" value="{{ $post->author_name }}" required>
-                            </div> --}}
+                            </div>
                             <div class="mb-3">
                                 <label for="edit_content" class="form-label">Content</label>
                                 <textarea class="form-control" id="edit_content" name="content" rows="4" required>{{ $post->content }}</textarea>
