@@ -45,7 +45,8 @@ QUEUE_CONNECTION=sync
 SESSION_DRIVER=file
 SESSION_LIFETIME=120
 
-```
+
+```compmoser install
 
 ```php artisan key:generate
 
